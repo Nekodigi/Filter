@@ -8,6 +8,18 @@ PImage directBlend(PImage A, PImage B){
   return result;
 }
 
+PImage maskBlend(PImage A, PImage B, boolean[][] mask){
+  PImage result = B.copy();
+  for(int i=0; i<A.width; i++){
+    for(int j=0; j<A.height; j++){
+      if(!mask[i][j]){
+        result.pixels[i+j*A.width] = A.pixels[i+j*A.width];
+      }
+    }
+  }
+  return result;
+}
+
 
 PImage sub(PImage A, PImage B){//A, B must be same size
   PImage result = A.copy();

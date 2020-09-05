@@ -20,6 +20,6 @@ PImage normalizeImage(PImage input){
     color col = input.pixels[i];
     float r = red(col);float g = green(col);float b = blue(col);
     result.pixels[i] = color((r-min)/(max-min), (g-min)/(max-min), (b-min)/(max-min));
-  }println(max, min);
+  }
   return result;
 }

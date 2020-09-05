@@ -8,9 +8,7 @@ float[][] kgauss = {{1,  4,  6,  4, 1},
                     {4, 16, 24, 16, 4},
                     {1,  4,  6,  4, 1}};
                     
-PImage[] gaussianPyramid;
-PImage[] laplacianPyramid;
-boolean showGaussian = true;
+boolean useNegative = true;
 
 void setup(){
   for(int i=0; i<5; i++){
@@ -21,26 +19,15 @@ void setup(){
   size(1024, 1024);
   //size(512, 512);
   colorMode(RGB, 1, 1, 1);
-  img = loadImage("FevCat.png");
-  img2 = loadImage("ImpactKaeruW.png");
+  //img = loadImage("FevCat.png");
+  //img2 = loadImage("ImpactKaeruW.png");
+  img = loadImage("C1.jpg");
+  img2 = loadImage("C2.jpg");
   img.resize(1024, 1024);
   img2.resize(1024, 1024);
   //img.resize(512, 512);
-  
-  
-  gaussianPyramid = gaussianPyramid(img, 6);
-  laplacianPyramid = laplacianPyramid(img, 6);
-  laplacianBlending(img, img2, 5);
+  image(laplacianBlending(img, img2, 5),(width-height)/2, 0, height, height);
 }
 
 void draw(){
-  //if(showGaussian)image(gaussianPyramid[(int)map(mouseX, 0, width, 0, 6)], 0, 0, width, height);
-  //else image(normalizeImage(laplacianPyramid[(int)map(mouseX, 0, width, 0, 5)]), 0, 0, width, height);
-  
-}
-
-void keyPressed(){
-  if(key == 't'){
-    showGaussian = !showGaussian;
-  }
 }

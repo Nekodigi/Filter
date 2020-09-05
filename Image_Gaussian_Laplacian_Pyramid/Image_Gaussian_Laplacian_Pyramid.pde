@@ -19,6 +19,7 @@ void setup(){
     }
   }
   size(1024, 1024);
+  //fullScreen();
   //size(512, 512);
   colorMode(RGB, 1, 1, 1);
   img = loadImage("FevCat.png");
@@ -31,8 +32,9 @@ void setup(){
 }
 
 void draw(){
-  if(showGaussian)image(gaussianPyramid[(int)map(mouseX, 0, width, 0, 6)], 0, 0, width, height);
-  else image(normalizeImage(laplacianPyramid[(int)map(mouseX, 0, width, 0, 5)]), 0, 0, width, height);
+  background(.9);
+  if(showGaussian)image(gaussianPyramid[(int)map(mouseX, 0, width, 0, 6)], (width-height)/2, 0, height, height);
+  else image(normalizeImage(laplacianPyramid[(int)map(mouseX, 0, width, 0, 5)]), (width-height)/2, 0, height, height);
   
 }
 
