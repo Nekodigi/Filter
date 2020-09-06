@@ -9,20 +9,16 @@ float[][] kgauss = {{1,  4,  6,  4, 1},
                     {6, 24, 36, 24, 6},
                     {4, 16, 24, 16, 4},
                     {1,  4,  6,  4, 1}};
-                    
-PImage[] gaussianPyramid;
-PImage[] laplacianPyramid;
-boolean showGaussian = true;
 boolean useNegative = true;
-
+                    
 void setup(){
   for(int i=0; i<5; i++){
     for(int j=0; j<5; j++){
       kgauss[i][j] /= 256;
     }
   }
-  //size(1024, 1024);
-  fullScreen();
+  size(1024, 1024);
+  //fullScreen(P3D);
   //size(512, 512);
   colorMode(RGB, 1, 1, 1);
   //img = loadImage("FevCat.png");
@@ -43,20 +39,11 @@ void draw(){
   if(mousePressed){
     for(int i=0; i<mask.length; i++){
       for(int j=0; j<mask[0].length; j++){
-        if(dist(i, j, map(mouseX, 0, width, 0, img.width), map(mouseY, 0, height, 0, img.height)) < brushS){
+        if(dist(i, j, map(mouseX, (width-height)/2, width-(width-height)/2, 0, img.width), map(mouseY, 0, height, 0, img.height)) < brushS){
           mask[i][j] = true;
         }
       }
     }
   }
   image(laplacianBlending(img, img2, 5, mask), (width-height)/2, 0, height, height);
-  //if(showGaussian)image(gaussianPyramid[(int)map(mouseX, 0, width, 0, 6)], 0, 0, width, height);
-  //else image(normalizeImage(laplacianPyramid[(int)map(mouseX, 0, width, 0, 5)]), 0, 0, width, height);
-  
-}
-
-void keyPressed(){
-  if(key == 't'){
-    showGaussian = !showGaussian;
-  }
 }

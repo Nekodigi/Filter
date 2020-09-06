@@ -21,8 +21,8 @@ void setup(){
   for(int i=0; i<img.width; i++){
     for(int j=0; j<img.height; j++){
       float[] cols = new float[filterSize*filterSize];//use color or brightness
-      for(int is=-filterS; is<filterS; is++){
-        for(int js=-filterS; js<filterS; js++){
+      for(int is=-filterS; is<=filterS; is++){
+        for(int js=-filterS; js<=filterS; js++){
           //cols[(filterS+is)+(filterS+js)*filterSize] = img.pixels[constrain(i+is, 0, img.width-1)+constrain(j+js, 0, img.height-1)*img.width];
           cols[(filterS+is)+(filterS+js)*filterSize] = brightness(img.pixels[constrain(i+is, 0, img.width-1)+constrain(j+js, 0, img.height-1)*img.width]);//! constrain index
         }
